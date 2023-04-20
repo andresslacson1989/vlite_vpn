@@ -13,7 +13,7 @@ apt install curl -y
 # Variables (Can be changed depends on your preferred values)
 # Script name
 MyScriptName='BytesPH'
-MYIP=$(wget -qO- icanhazip.com);
+MYIP=$(curl -s https://api.ipify.org);
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 DOMAIN="https://astigvpn.bytesph.com"
 #check if server is from bytesph panel
