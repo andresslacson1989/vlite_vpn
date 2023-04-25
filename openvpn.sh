@@ -1,6 +1,6 @@
 #!/bin/bash
 cp /usr/share/zoneinfo/Asia/Manila /etc/localtime
-DOMAIN="https://astigvpn.bytesph.com"
+DOMAIN="https://syopawvpn.bytesph.com"
 IP=$(curl -s https://api.ipify.org)
 
 install_require() {
