@@ -1,11 +1,20 @@
 #!/bin/bash
-cp /usr/share/zoneinfo/Asia/Manila /etc/localtime
-DOMAIN="https://syopawvpn.bytesph.com"
+cp /usr/share/zoneinfo/Asia/Riyadh /etc/localtime
+DOMAIN="https://vlitevpn.site"
 IP=$(curl -s https://api.ipify.org)
+
+while [[ "SERVER_NAME" == '' ]]; do
+  clear
+  echo ""
+  echo "Write the desired Server Name that will appear on your VPN Panel. If left blank, the default name 'Server' will be used."
+  echo ""
+  echo "Server Name: "
+  read -r SERVER_NAME
+done
 
 install_require() {
     #send Updating
-    curl -sb -X POST $DOMAIN/api/server/install -H "Content-Type: application/x-www-form-urlencoded" -d "status=Update&ip=$IP"
+    curl -sb -X POST $DOMAIN/api/server/install -H "Content-Type: application/x-www-form-urlencoded" -d "status=add_server&ip=$IP&server_name=$SERVER_NAME"
     clear
     echo "Updating System."
     {
@@ -28,7 +37,7 @@ install_require() {
 
 install_squid() {
     #send Squid
-    curl -sb -X POST https://syopawvpn.bytesph.com/api/server/install -H "Content-Type: application/x-www-form-urlencoded" -d "status=Squid&ip=$IP"
+    curl -sb -X POST https://vlitevpn.site/api/server/install -H "Content-Type: application/x-www-form-urlencoded" -d "status=Squid&ip=$IP"
     clear
     echo "Installing Proxy."
     {
@@ -392,7 +401,7 @@ verb 3' >/etc/openvpn/server2.conf
         /bin/cat <<"EOM" >/etc/openvpn/login/auth_vpn
 #!/bin/bash
 ##Authentication
-data=$(curl -sb -X POST https://syopawvpn.bytesph.com/api/server/login -H "Content-Type: application/x-www-form-urlencoded" -d "login=true&username=$username&password=$password")
+data=$(curl -sb -X POST https://vlitevpn.site/api/server/login -H "Content-Type: application/x-www-form-urlencoded" -d "login=true&username=$username&password=$password")
 
 if [[ $data == "ACCEPT" ]];
 then
@@ -412,7 +421,7 @@ EOM
 #!/bin/bash
 
 ##set status online to user connected
-data=$(curl -sb -X POST https://syopawvpn.bytesph.com/api/server/update-status -H "Content-Type: application/x-www-form-urlencoded" -d "status=1&username=$common_name")
+data=$(curl -sb -X POST https://vlitevpn.site/api/server/update-status -H "Content-Type: application/x-www-form-urlencoded" -d "status=1&username=$common_name")
 
 BYTES1
 
@@ -420,7 +429,7 @@ BYTES1
         cat <<'BYTES2' >/etc/openvpn/login/disconnect.sh
 #!/bin/bash
 
-data=$(curl -sb -X POST https://syopawvpn.bytesph.com/api/server/update-status -H "Content-Type: application/x-www-form-urlencoded" -d "status=0&username=$common_name")
+data=$(curl -sb -X POST https://vlitevpn.site/api/server/update-status -H "Content-Type: application/x-www-form-urlencoded" -d "status=0&username=$common_name")
 BYTES2
 
         cat <<EOF >/etc/openvpn/easy-rsa/keys/ca.crt
